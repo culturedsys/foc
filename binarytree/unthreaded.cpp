@@ -1,18 +1,18 @@
-#include "simple.hpp"
+#include "unthreaded.hpp"
 
 #include <stack>
 
-node::node(int value, node* left, node* right)
+unthreaded::node::node(int value, node* left, node* right)
 : value(value), left(left), right(right)
 { }
 
-node::~node()
+unthreaded::node::~node()
 {
     delete left;
     delete right;
 }
 
-void node::traverse_preorder(std::function<void (int)> visit)
+void unthreaded::node::traverse_preorder(std::function<void (int)> visit)
 {
     std::stack<node*> pending;
     node* current = this;
@@ -38,7 +38,7 @@ void node::traverse_preorder(std::function<void (int)> visit)
     }
 }
 
-void node::traverse_inorder(std::function<void (int)> visit)
+void unthreaded::node::traverse_inorder(std::function<void (int)> visit)
 {
     std::stack<node*> pending;
     node* current = this;
@@ -63,4 +63,18 @@ void node::traverse_inorder(std::function<void (int)> visit)
             current = current->right;
         }
     }
+}
+
+void unthreaded::node::insert_left(node* n)
+{
+    n->left = this->left;
+    n->right = nullptr;
+    this->left = n; 
+}
+
+void unthreaded::node::insert_right(node* n)
+{
+    n->right = this->right;
+    n->left = nullptr;
+    this->right = n;
 }

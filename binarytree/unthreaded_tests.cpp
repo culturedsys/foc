@@ -1,9 +1,9 @@
-#include "simple.hpp"
+#include "unthreaded.hpp"
 
 #include <vector>
 #include <iostream>
 
-using namespace std::placeholders;
+using namespace unthreaded;
 
 class addto
 {

@@ -7,6 +7,8 @@
 
 #include <functional>
 
+namespace unthreaded {
+
 class node {
     int value;
     node* left;
@@ -19,5 +21,10 @@ public:
     void traverse_preorder(std::function<void (int)>);
     void traverse_inorder(std::function<void (int)>);
     void traverse_postorder(std::function<void (int)>);
+
+    void insert_left(node* n);
+    void insert_right(node* n);
 };
+
+}
 #endif
